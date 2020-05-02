@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo (isset($title) ? $title . ' - ' : '') . 'Rental Mobil XYZ' ?></title>
+    <title><?php echo (isset($title) ? $title . ' - ' : '') . APP_NAME ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jumbotron-narrow.css') ?>">
@@ -13,17 +13,12 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <?php if ($this->session->userdata('user_id')): ?>
-                        <!-- <li role="presentation" class="<?php echo $this->uri->segment(1) == '' ? 'active' : '' ?>"><a href="<?php echo site_url(); ?>">Home</a></li> -->
-                        <li role="presentation" class="<?php echo $this->uri->segment(1) == '' || $this->uri->segment(1) == 'mobil' ? 'active' : '' ?>"><a href="<?php echo site_url('mobil'); ?>">Mobil</a></li>
-                        <li role="presentation" class="<?php echo $this->uri->segment(1) == 'pesanan' ? 'active' : '' ?>"><a href="<?php echo site_url('pesanan'); ?>">Pesanan</a></li>
-                        <li role="presentation"><a href="<?php echo site_url('auth/logout'); ?>">Logout</a></li>
-                    <?php else: ?>
-                        <li role="presentation" class="<?php echo $this->uri->segment(1) == 'auth' && $this->uri->segment(2) == 'login' ? 'active' : '' ?>"><a href="<?php echo site_url('auth/login'); ?>">Login</a></li>
-                    <?php endif; ?>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'barang' ? 'active' : '' ?>"><a href="<?php echo site_url('barang'); ?>">Barang</a></li>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == '' || $this->uri->segment(1) == 'penjualan' ? 'active' : '' ?>"><a href="<?php echo site_url(); ?>">Penjualan</a></li>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'penjualan' && $this->uri->segment(2) == 'laporan' ? 'active' : '' ?>"><a href="<?php echo site_url('penjualan/laporan'); ?>">Laporan</a></li>
                 </ul>
             </nav>
-            <h3 class="text-muted">Rental XYZ</h3>
+            <h3 class="text-muted"><?php echo APP_NAME; ?></h3>
         </div>
         
         <?php $this->load->view('feedback'); ?>
@@ -31,7 +26,7 @@
         <?php $this->load->view($view); ?>
 
         <footer class="footer">
-            <p>&copy; <?php echo date('Y'); ?> Rental XYZ, Inc.</p>
+            <p>&copy; <?php echo date('Y'); ?> <?php echo APP_NAME; ?></p>
         </footer>
     </div>
 
