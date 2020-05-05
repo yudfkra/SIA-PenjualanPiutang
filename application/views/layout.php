@@ -13,9 +13,10 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'barang' ? 'active' : '' ?>"><a href="<?php echo site_url('barang'); ?>">Barang</a></li>
-                    <li role="presentation" class="<?php echo $this->uri->segment(1) == '' || $this->uri->segment(1) == 'penjualan' ? 'active' : '' ?>"><a href="<?php echo site_url(); ?>">Penjualan</a></li>
-                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'penjualan' && $this->uri->segment(2) == 'laporan' ? 'active' : '' ?>"><a href="<?php echo site_url('penjualan/laporan'); ?>">Laporan</a></li>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == '' || $this->uri->segment(1) == 'barang' ? 'active' : '' ?>"><a href="<?php echo site_url('barang'); ?>">Barang</a></li>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'pelanggan' ? 'active' : '' ?>"><a href="<?php echo site_url('pelanggan'); ?>">Pelanggan</a></li>
+                    <li role="presentation" class="<?php echo $this->uri->segment(1) == 'penjualan' ? 'active' : '' ?>"><a href="<?php echo site_url('penjualan'); ?>">Penjualan</a></li>
+                    <!-- <li role="presentation" class="<?php echo $this->uri->segment(1) == 'penjualan' && $this->uri->segment(2) == 'laporan' ? 'active' : '' ?>"><a href="<?php echo site_url('penjualan/laporan'); ?>">Laporan</a></li> -->
                 </ul>
             </nav>
             <h3 class="text-muted"><?php echo APP_NAME; ?></h3>

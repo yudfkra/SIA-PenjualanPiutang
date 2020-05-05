@@ -23,7 +23,7 @@ class Barang extends MY_Controller
         $data['view'] = 'barang/index';
 
         // set judul halaman
-        $data['title'] = 'barang';
+        $data['title'] = 'Barang';
         $this->load->view('layout', $data);
     }
 
