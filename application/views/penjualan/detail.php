@@ -35,12 +35,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="input-total" class="col-sm-3 control-label">Total</label>
-                <div class="col-sm-9">
-                    <p class="form-control-static"><?php echo format_rp($penjualan->total); ?></p>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="input-tanggal" class="col-sm-3 control-label">Tanggal Transaksi</label>
                 <div class="col-sm-9">
                     <p class="form-control-static"><?php echo $penjualan->tanggal; ?></p>
@@ -61,7 +55,7 @@
             <div class="form-group">
                 <label for="input-pembayaran" class="col-sm-3 control-label">Pembayaran</label>
                 <div class="col-sm-8">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 10px;">No.</th>
@@ -84,13 +78,25 @@
                                     <td colspan="3" class="text-center">Tidak ada data Pembayaran</td>
                                 </tr>
                             <?php } ?>
+                            <tr><td colspan="3"></td></tr>
                             <tr>
-                                <td colspan="2">
+                                <th class="text-right" colspan="2">Total</th>
+                                <td class="text-right"><?php echo format_rp($penjualan->total); ?></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right" colspan="2">Terbayar</th>
+                                <td class="text-right"><?php echo format_rp($penjualan->total_terbayar); ?></td>
+                            </tr>
+                            <tr>
+                                <th class="text-right" colspan="2">Sisa</th>
+                                <td class="text-right"><?php echo format_rp($penjualan->piutang); ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">
                                     <?php if ($penjualan->status == 'BELUM LUNAS') : ?>
                                         <a href="<?php echo site_url("penjualan/pembayaran?penjualan_id=" . $penjualan->id) ?>" class="btn btn-success btn-sm">Tambah Pembayaran</a>
                                     <?php endif; ?>
                                 </td>
-                                <td class="text-right"><?php echo format_rp($penjualan->total_terbayar); ?></td>
                             </tr>
                         </tbody>
                     </table>

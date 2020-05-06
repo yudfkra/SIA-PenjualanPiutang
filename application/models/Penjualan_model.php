@@ -5,11 +5,14 @@ class Penjualan_model extends CI_Model
 {
     public function listPenjualan($where = array(), $where_like = array(), $orderBy = array())
     {
-        $this->db->select('penjualan.*, pelanggan.nama as nama_pelanggan, pelanggan.no_hp as no_hp, pelanggan.alamat')
-                ->select('barang.nama as nama_barang');
+        $this->db->select('penjualan.*')
+                ->select('pelanggan.nama as nama_pelanggan, pelanggan.no_hp as no_hp, pelanggan.alamat')
+                ->select('barang.nama as nama_barang')
+                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar, (penjualan.total - pembayaran.total_terbayar) as piutang');
         $this->db->from('penjualan')
                 ->join('pelanggan', 'penjualan.pelanggan_id = pelanggan.id')
-                ->join('barang', 'penjualan.barang_id = barang.id');
+                ->join('barang', 'penjualan.barang_id = barang.id')
+                ->join("(SELECT penjualan_id, SUM(nominal) as total_terbayar FROM pembayaran GROUP BY penjualan_id) as pembayaran", "penjualan.id = pembayaran.penjualan_id", "left");
 
         if ($where) {
             $this->db->where($where);
@@ -40,7 +43,7 @@ class Penjualan_model extends CI_Model
         $this->db->select('penjualan.*')
                 ->select('pelanggan.nama as nama_pelanggan, pelanggan.no_hp as no_hp, pelanggan.alamat')
                 ->select('barang.nama as nama_barang')
-                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar');
+                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar, (penjualan.total - pembayaran.total_terbayar) as piutang');
         $this->db->from('penjualan')
                 ->join('pelanggan', 'penjualan.pelanggan_id = pelanggan.id')
                 ->join('barang', 'penjualan.barang_id = barang.id')
