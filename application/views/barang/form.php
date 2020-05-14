@@ -15,7 +15,7 @@
             <div class="form-group <?php echo form_error('harga') ? 'has-error' : ''; ?>">
                 <label for="input-harga" class="col-sm-2 control-label">Harga</label>
                 <div class="col-sm-10">
-                    <input type="text" name="harga" class="form-control" id="input-harga" placeholder="Harga" value="<?php echo set_value('harga', $form_edit ? $barang->harga : null); ?>">
+                    <input type="text" name="harga" class="form-control input-price" id="input-harga" placeholder="Harga" value="<?php echo set_value('harga', $form_edit ? $barang->harga : null); ?>">
                     <?php echo form_error('harga', '<span class="help-block">', '</span>'); ?>
                 </div>
             </div>

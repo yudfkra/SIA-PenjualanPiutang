@@ -32,6 +32,12 @@
     </div>
 
     <script src="<?php echo base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.number.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.input-price').number(true, 0, ',', '.');
+        });
+    </script>
 </body>
 </html>

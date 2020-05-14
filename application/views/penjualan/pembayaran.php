@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <?php echo form_open_multipart("penjualan/pembayaran", array('class' => 'form-horizontal')); ?>
+        <?php echo form_open_multipart("penjualan/pembayaran", array('class' => 'form-horizontal', 'autocomplete' => 'off')); ?>
         <div class="form-group <?php echo form_error('penjualan_id') ? 'has-error' : ''; ?>">
             <label for="input-pelanggan" class="col-sm-2 control-label">Kode Penjualan</label>
             <div class="col-sm-10">
@@ -18,7 +18,7 @@
         <div class="form-group <?php echo form_error('nominal') ? 'has-error' : ''; ?>">
             <label for="input-nominal" class="col-sm-2 control-label">Nominal</label>
             <div class="col-sm-10">
-                <input type="text" name="nominal" class="form-control" id="input-nominal" placeholder="Nominal" value="<?php echo set_value('nominal'); ?>">
+                <input type="text" name="nominal" class="form-control input-price" id="input-nominal" placeholder="Nominal" value="<?php echo set_value('nominal'); ?>">
                 <?php echo form_error('nominal', '<span class="help-block">', '</span>'); ?>
             </div>
         </div>
