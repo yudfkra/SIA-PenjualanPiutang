@@ -14,8 +14,9 @@
                             <th>Kode</th>
                             <th>Nama Pelanggan</th>
                             <th>Total</th>
-                            <th style="width: 160px;">Tanggal Transaksi</th>
+                            <th>Piutang</th>
                             <th>Status</th>
+                            <th style="width: 160px;">Tanggal Transaksi</th>
                             <th style="width: 160px;">Tanggal Jatuh Tempo</th>
                             <th class="text-center" style="width: 200px;">Aksi</th>
                         </tr>
@@ -29,8 +30,9 @@
                                     <td><?php echo $penjualan->kode; ?></td>
                                     <td><?php echo $penjualan->nama_pelanggan; ?></td>
                                     <td><?php echo format_rp($penjualan->total); ?></td>
-                                    <td><?php echo $penjualan->tanggal; ?></td>
+                                    <td><?php echo format_rp($penjualan->piutang); ?></td>
                                     <td><?php echo $penjualan->status; ?></td>
+                                    <td><?php echo $penjualan->tanggal; ?></td>
                                     <td><?php echo $penjualan->tanggal_jatuh_tempo; ?></td>
                                     <td class="text-center">
                                         <div class="btn-group">

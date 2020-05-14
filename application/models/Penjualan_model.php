@@ -8,7 +8,8 @@ class Penjualan_model extends CI_Model
         $this->db->select('penjualan.*')
                 ->select('pelanggan.nama as nama_pelanggan, pelanggan.no_hp as no_hp, pelanggan.alamat')
                 ->select('barang.nama as nama_barang')
-                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar, (penjualan.total - pembayaran.total_terbayar) as piutang');
+                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar')
+                ->select('(penjualan.total - COALESCE(pembayaran.total_terbayar, 0)) as piutang');
         $this->db->from('penjualan')
                 ->join('pelanggan', 'penjualan.pelanggan_id = pelanggan.id')
                 ->join('barang', 'penjualan.barang_id = barang.id')
@@ -43,7 +44,8 @@ class Penjualan_model extends CI_Model
         $this->db->select('penjualan.*')
                 ->select('pelanggan.nama as nama_pelanggan, pelanggan.no_hp as no_hp, pelanggan.alamat')
                 ->select('barang.nama as nama_barang')
-                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar, (penjualan.total - pembayaran.total_terbayar) as piutang');
+                ->select('COALESCE(pembayaran.total_terbayar, 0) as total_terbayar')
+                ->select('(penjualan.total - COALESCE(pembayaran.total_terbayar, 0)) as piutang');
         $this->db->from('penjualan')
                 ->join('pelanggan', 'penjualan.pelanggan_id = pelanggan.id')
                 ->join('barang', 'penjualan.barang_id = barang.id')

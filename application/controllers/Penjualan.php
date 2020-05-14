@@ -162,7 +162,7 @@ class Penjualan extends MY_Controller
         $list_penjualan = $this->penjualan_model->listPenjualan(array('penjualan.status' => 'BELUM LUNAS'));
         $penjualan = array();
         foreach ($list_penjualan as $_penjualan) {
-            $penjualan[$_penjualan->id] = "{$_penjualan->kode} - " . format_rp($_penjualan->total);
+            $penjualan[$_penjualan->id] = "{$_penjualan->kode} (Piutang: " . format_rp($_penjualan->piutang) . ") - " . format_rp($_penjualan->total);
         }
 
         // mengecek jika tidak ada data penjualan yang tersedia
@@ -195,7 +195,7 @@ class Penjualan extends MY_Controller
             // mengumpulkan data yang diinput user untuk disimpan ke database.
             $data = array(
                 'penjualan_id' => $penjualan->id,
-                'nominal' => $this->input->post('nominal'),
+                'nominal' => str_replace('.', '', $this->input->post('nominal')),
                 'tanggal' => $this->input->post('tanggal'),
             );
 
@@ -289,7 +289,7 @@ class Penjualan extends MY_Controller
         }
 
         $this->form_validation->set_rules('penjualan_id', 'Kode Penjualan', 'required|in_list[' . implode(',', $penjualan) . ']');
-        $this->form_validation->set_rules('nominal', 'Nominal', 'required|numeric');
+        $this->form_validation->set_rules('nominal', 'Nominal', 'required|regex_match[/[^0-9]/]');
         $this->form_validation->set_rules('tanggal', 'Tanggal Pembayaran', 'required');
 
         return $this->form_validation->run();
