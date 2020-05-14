@@ -63,7 +63,8 @@ class Barang extends MY_Controller
             // mengumpulkan data yang diinput user untuk disimpan ke database.
             $data = array(
                 'nama' => $this->input->post('nama'),
-                'harga' => $this->input->post('harga'),
+                'harga' => str_replace('.', '', $this->input->post('harga')),
+                'stock' => $this->input->post('stock'),
                 'tanggal_input' => date('Y-m-d H:i:s'),
             );
 
@@ -124,7 +125,8 @@ class Barang extends MY_Controller
             // mengumpulkan data yang diinput user untuk disimpan ke database.
             $data = array(
                 'nama' => $this->input->post('nama') ? $this->input->post('nama') : $barang->nama,
-                'harga' => $this->input->post('harga') ? $this->input->post('harga') : $barang->harga,
+                'harga' => str_replace('.', '', $this->input->post('harga') ? $this->input->post('harga') : $barang->harga),
+                'stock' => $this->input->post('stock') ? $this->input->post('stock') : $barang->stock,
             );
 
             // memanggil fungsi model untuk menyimpan data.
@@ -170,7 +172,8 @@ class Barang extends MY_Controller
     protected function validasiInput()
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|regex_match[/[^0-9]/]');
+        $this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 
         return $this->form_validation->run();
     }

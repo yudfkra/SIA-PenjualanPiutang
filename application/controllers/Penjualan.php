@@ -48,10 +48,16 @@ class Penjualan extends MY_Controller
         }
 
         // mengambil data barang
-        $list_barang = $this->barang_model->listBarang();
+        $list_barang = $this->barang_model->listBarang(array('stock >' => 0));
         $barang = array();
         foreach ($list_barang as $_barang) {
-            $barang[$_barang->id] = "{$_barang->nama} - " . format_rp($_barang->harga);
+            $barang[$_barang->id] = "{$_barang->nama} (Stock: {$_barang->stock}) - " . format_rp($_barang->harga);
+        }
+
+        // mengecek jika tidak ada data penjualan yang tersedia
+        if (empty($barang)) {
+            // jika data penjualan kosong beri pesan ke admin untuk menambahkan data penjualan
+            $data['warning_message'] = 'Saat ini tidak ada barang yang tersedia. silahkan melakukan update <a href="'.site_url('barang').'">stock barang</a> atau menambahkan <a href="' . site_url('barang/tambah') . '">data barang</a> terlebih dahulu.';
         }
 
         $data['pelanggan'] = $pelanggan;
@@ -96,6 +102,10 @@ class Penjualan extends MY_Controller
                 'status' => 'BELUM LUNAS',
                 'tanggal' => date('Y-m-d H:i:s'),
             );
+
+            $this->barang_model->updateBarang($barang->id, array(
+                'stock' => $barang->stock - $qty,
+            ));
 
             // memanggil fungsi model untuk menyimpan data.
             $this->penjualan_model->addPenjualan($data);

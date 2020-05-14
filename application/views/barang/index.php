@@ -11,6 +11,7 @@
                             <th style="width: 10px;">No.</th>
                             <th>Nama</th>
                             <th>Harga</th>
+                            <th>Stock</th>
                             <th style="width: 160px;">Tanggal Input</th>
                             <th style="width: 140px;">Aksi</th>
                         </tr>
@@ -22,6 +23,7 @@
                                     <td><?php echo $no += 1; ?></td>
                                     <td><?php echo $barang->nama; ?></td>
                                     <td><?php echo format_rp($barang->harga); ?></td>
+                                    <td><?php echo $barang->stock; ?></td>
                                     <td><?php echo $barang->tanggal_input; ?></td>
                                     <td>
                                         <a href="<?php echo site_url("barang/edit/" . $barang->id) ?>" class="btn btn-info">Edit</a>

@@ -19,6 +19,13 @@
                     <?php echo form_error('harga', '<span class="help-block">', '</span>'); ?>
                 </div>
             </div>
+            <div class="form-group <?php echo form_error('stock') ? 'has-error' : ''; ?>">
+                <label for="input-stock" class="col-sm-2 control-label">Stock</label>
+                <div class="col-sm-10">
+                    <input type="number" name="stock" class="form-control" id="input-stock" placeholder="Stock" value="<?php echo set_value('stock', $form_edit ? $barang->stock : null); ?>">
+                    <?php echo form_error('stock', '<span class="help-block">', '</span>'); ?>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a href="<?php echo site_url("barang"); ?>" class="btn btn-default">Batal</a>
