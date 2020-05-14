@@ -27,7 +27,7 @@
         <?php $this->load->view($view); ?>
 
         <footer class="footer">
-            <p>&copy; <?php echo date('Y'); ?> <?php echo APP_NAME; ?></p>
+            <p>&copy; <?php echo date('Y'); ?> <?php echo APP_AUTHOR; ?></p>
         </footer>
     </div>
 
